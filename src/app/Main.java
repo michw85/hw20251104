@@ -1,5 +1,7 @@
 package app;
 
+import app.Exception.NotCorrectEmailFormatException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,6 +20,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите email: ");
         String email = scanner.nextLine();
+        scanner.close();
 
         List<String> errors = new ArrayList<>();
 
