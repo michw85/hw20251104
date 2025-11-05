@@ -16,6 +16,9 @@ public class Main2 {
                 email = inputEmail();
                 System.out.println("Email:" + email);
             } catch (NotCorrectEmailFormatException e) {
+                System.out.println("При вводе email возникли следующие ошибки:");
+                e.getList().forEach(System.out::println);
+//                throw e;
                 System.out.println(e.getMessage());
             }
         }
@@ -26,13 +29,13 @@ public class Main2 {
         System.out.print("Введите email: ");
         String email = scanner.nextLine();
 
-        try {
-            checkEmail(email);
-        } catch (NotCorrectEmailFormatException e){
-            System.out.println("При вводе email возникли следующие ошибки:");
-            e.getList().forEach(System.out::println);
-            throw e;
-        }
+//        try {
+        checkEmail(email);
+//        } catch (NotCorrectEmailFormatException e){
+//            System.out.println("При вводе email возникли следующие ошибки:");
+//            e.getList().forEach(System.out::println);
+//            throw e;
+//        }
 
         scanner.close();
 
@@ -47,20 +50,20 @@ public class Main2 {
         if (email.length() < 5) {
             errors.add("строка короче 5 символов");
         }
-        if (atIndex <= 0) {
-            errors.add("отсутствует символ '@'");
-        }
-        if (atIndex == 0 ) {
-            errors.add("не может начинаться с '@'");
-        }
-        if (atLastIndex == email.length() - 1 ) {
-            errors.add("не может заканчиваться на '@'");
-        }
-        if (atLastIndex != atIndex ) {
-            errors.add("должен быть один символ '@'");
-        }
+            if (atIndex <= 0) {
+                errors.add("отсутствует символ '@'");
+            }
+            if (atIndex == 0) {
+                errors.add("не может начинаться с '@'");
+            }
+            if (atLastIndex == email.length() - 1) {
+                errors.add("не может заканчиваться на '@'");
+            }
+            if (atLastIndex != atIndex) {
+                errors.add("должен быть один символ '@'");
 
-        if (!errors.isEmpty()){
+        }
+        if (!errors.isEmpty()) {
             throw new NotCorrectEmailFormatException(errors);
         }
 
